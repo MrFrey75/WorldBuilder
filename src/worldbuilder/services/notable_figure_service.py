@@ -24,7 +24,7 @@ class NotableFigureService:
             species_id: Species ID (optional, defaults to Human if available)
             location_id: Location ID (optional)
             title: Title (e.g., "King", "Lord")
-            age: Age (can be range or "unknown")
+            age: Age (can be range or "Unknown")
             occupation: Occupation
             description: Description
             attributes: Additional attributes dict

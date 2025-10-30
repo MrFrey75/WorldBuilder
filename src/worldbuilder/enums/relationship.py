@@ -4,7 +4,7 @@ from enum import Enum
 
 class RelationshipType(Enum):
     """Types of relationships between entities."""
-    UNKWNOWN = "unknown"
+    UNKWNOWN = "Unknown"
     # Family relationships
     PARENT = "Parent"
     CHILD = "Child"

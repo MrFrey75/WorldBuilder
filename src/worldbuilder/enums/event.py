@@ -4,8 +4,9 @@ from enum import Enum
 
 class EventType(Enum):
 
-    UNKWNOWN = "unknown"
-    
+    UNKWNOWN = "Unknown"
+    OTHER = "Other"
+
     """Types/categories of events."""
     BIRTH = "Birth"
     DEATH = "Death"
@@ -25,7 +26,6 @@ class EventType(Enum):
     POLITICAL = "Political Event"
     CULTURAL = "Cultural Event"
     RELIGIOUS = "Religious Event"
-    OTHER = "Other"
 
 
 class EventImportance(Enum):

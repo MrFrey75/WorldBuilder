@@ -4,7 +4,7 @@ from enum import Enum
 
 class OrganizationType(str, Enum):
     """Types of organizations."""
-    UNKWNOWN = "unknown"
+    UNKWNOWN = "Unknown"
     KINGDOM = "kingdom"
     EMPIRE = "empire"
     NATION = "nation"
@@ -21,4 +21,9 @@ class OrganizationType(str, Enum):
     CLAN = "clan"
     FACTION = "faction"
     POLITICAL = "political"
+    CULTURAL = "cultural"
+    SOCIAL = "social"
+    SPORTING = "sporting"
+    PROFESSIONAL = "professional"
+    GUILD = "guild"
     OTHER = "other"

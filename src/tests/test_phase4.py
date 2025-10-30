@@ -25,7 +25,7 @@ def test_species_model():
     assert height == "5-6 feet"
     print("   ✓ Trait get/set works")
     
-    unknown = human.get_trait("unknown", "default")
+    unknown = human.get_trait("Unknown", "default")
     assert unknown == "default"
     print("   ✓ Trait default value works")
 

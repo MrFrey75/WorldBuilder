@@ -4,7 +4,7 @@ from enum import Enum
 
 class ArtifactType(str, Enum):
     """Types of artifacts."""
-    UNKWNOWN = "unknown"
+    UNKWNOWN = "Unknown"
     WEAPON = "weapon"
     ARMOR = "armor"
     ACCESSORY = "accessory"
@@ -21,4 +21,8 @@ class ArtifactType(str, Enum):
     TREASURE = "treasure"
     ART = "art"
     JEWELRY = "jewelry"
+    CURRENCY = "currency"
+    DOCUMENT = "document"
+    MAP = "map"
+    INSTRUMENT = "instrument"
     OTHER = "other"

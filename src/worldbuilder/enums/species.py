@@ -4,7 +4,8 @@ from enum import Enum
 
 class SpeciesType(Enum):
     """Classification types for species."""
-    UNKWNOWN = "unknown"
+    UNKWNOWN = "Unknown"
+    OTHER = "Other"
     SENTIENT = "Sentient"
     NON_SENTIENT = "Non-Sentient"
     MAGICAL = "Magical"
@@ -12,4 +13,3 @@ class SpeciesType(Enum):
     UNDEAD = "Undead"
     CONSTRUCT = "Construct"
     HYBRID = "Hybrid"
-    OTHER = "Other"

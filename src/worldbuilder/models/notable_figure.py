@@ -17,7 +17,7 @@ class NotableFigure(BaseEntity):
     
     # Figure attributes
     title = Column(String(255), nullable=True)  # e.g., "King", "Lord", "Doctor"
-    age = Column(String(50), nullable=True)  # String to allow ranges or "unknown"
+    age = Column(String(50), nullable=True)  # String to allow ranges or "Unknown"
     occupation = Column(String(255), nullable=True)
     
     # Additional attributes stored as JSON
