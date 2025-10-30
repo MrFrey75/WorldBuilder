@@ -1,6 +1,6 @@
 # 🗺️ WorldBuilder Development Roadmap
 
-## Current Status: **Phase 10 - Visualization** ✓ Complete
+## Current Status: **Phase 11 - Rich Content** (Next Phase)
 
 This document outlines the complete development roadmap for WorldBuilder. The project is organized into 14 distinct phases, each containing multiple sub-phases with specific, actionable tasks.
 
@@ -144,25 +144,6 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [x] Add species trait/attribute editor
 - [x] Implement species image/illustration support
 - [x] Create species comparison view
-
-</details>
-- [ ] Implement SpeciesRepository with query methods
-- [ ] Create SpeciesService for business logic
-- [ ] Add default "Human" species to new universes
-
-### 4.2 Species CRUD Operations
-- [ ] Implement Create Species functionality
-- [ ] Implement Read/View Species details
-- [ ] Implement Update Species functionality
-- [ ] Implement Delete Species functionality (with safeguards)
-- [ ] Add species templates (common fantasy/sci-fi races)
-
-### 4.3 Species UI
-- [ ] Create Species list view (table/grid)
-- [ ] Design Species detail editor dialog
-- [ ] Add species trait/attribute editor
-- [ ] Implement species image/illustration support
-- [ ] Create species comparison view
 
 </details>
 
@@ -378,49 +359,49 @@ WorldBuilder is being developed in a phased approach to ensure:
 ---
 
 <details>
-<summary><b>Phase 12: Data Management</b></summary>
+<summary><b>Phase 12: Polish & UX</b></summary>
 
-### 12.1 Import/Export
-- [ ] Design export format (JSON or custom binary format)
-- [ ] Implement full universe export service
-- [ ] Implement selective entity export
-- [ ] Create import functionality with validation
-- [ ] Add export templates support
-
-### 12.2 Backup & Restore
-- [ ] Implement automatic backup system (scheduled background task)
-- [ ] Create manual backup functionality
-- [ ] Design restore wizard dialog
-- [ ] Add backup scheduling configuration
-- [ ] Implement backup compression (ZIP)
-
-</details>
-
----
-
-<details>
-<summary><b>Phase 13: Polish & UX</b></summary>
-
-### 13.1 User Preferences
+### 12.1 User Preferences
 - [ ] Create settings/preferences dialog
 - [ ] Implement theme selection (light/dark mode)
 - [ ] Add UI customization options
 - [ ] Create keyboard shortcut configuration UI
 - [ ] Implement auto-save preferences to config file
 
-### 13.2 Performance & Optimization
+### 12.2 Performance & Optimization
 - [ ] Implement lazy loading for large datasets
 - [ ] Add entity caching system (in-memory)
 - [ ] Optimize database queries (indexing, eager loading)
 - [ ] Implement virtual scrolling for large lists
 - [ ] Add loading indicators and progress bars
 
-### 13.3 Help & Documentation
+### 12.3 Help & Documentation
 - [ ] Create in-app help system (help browser widget)
 - [ ] Write user guide documentation
 - [ ] Add tooltips throughout UI
 - [ ] Create getting started wizard
 - [ ] Record tutorial videos (optional)
+
+</details>
+
+---
+
+<details>
+<summary><b>Phase 13: Data Management</b></summary>
+
+### 13.1 Import/Export
+- [ ] Design export format (JSON or custom binary format)
+- [ ] Implement full universe export service
+- [ ] Implement selective entity export
+- [ ] Create import functionality with validation
+- [ ] Add export templates support
+
+### 13.2 Backup & Restore
+- [ ] Implement automatic backup system (scheduled background task)
+- [ ] Create manual backup functionality
+- [ ] Design restore wizard dialog
+- [ ] Add backup scheduling configuration
+- [ ] Implement backup compression (ZIP)
 
 </details>
 
@@ -462,8 +443,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 | Phase 9: Additional Entities | 🟢 Complete | 100% |
 | Phase 10: Visualization | 🟢 Complete | 100% |
 | Phase 11: Rich Content | ⚪ Not Started | 0% |
-| Phase 12: Data Management | ⚪ Not Started | 0% |
-| Phase 13: Polish & UX | ⚪ Not Started | 0% |
+| Phase 12: Polish & UX | ⚪ Not Started | 0% |
+| Phase 13: Data Management | ⚪ Not Started | 0% |
 | Phase 14: Testing & Deployment | ⚪ Not Started | 0% |
 
 **Legend**: 🟢 Complete | 🟡 In Progress | ⚪ Not Started
