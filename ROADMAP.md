@@ -1,6 +1,6 @@
 # 🗺️ WorldBuilder Development Roadmap
 
-## Current Status: **Phase 7 - Events & Timeline** ✓ Complete
+## Current Status: **Phase 9 - Additional Entity Types** ✓ Complete
 
 This document outlines the complete development roadmap for WorldBuilder. The project is organized into 14 distinct phases, each containing multiple sub-phases with specific, actionable tasks.
 
@@ -267,44 +267,44 @@ WorldBuilder is being developed in a phased approach to ensure:
 ---
 
 <details>
-<summary><b>Phase 8: Additional Entity Types</b></summary>
+<summary><b>Phase 9: Additional Entity Types</b> ✓</summary>
 
-### 9.1 Organizations System
-- [ ] Create Organization model
-- [ ] Implement OrganizationRepository
-- [ ] Create OrganizationService for business logic
-- [ ] Create Organization CRUD operations
-- [ ] Design Organization detail view dialog
-- [ ] Add member/figure relationships
+### 9.1 Organizations System ✓
+- [x] Create Organization model
+- [x] Implement OrganizationRepository
+- [x] Create OrganizationService for business logic
+- [x] Create Organization CRUD operations
+- [x] Design Organization detail view dialog
+- [x] Add member/figure relationships
 
-### 9.2 Artifacts & Lore
-- [ ] Create Artifact model
-- [ ] Create Lore/Mythology model with LoreType enum
-- [ ] Implement respective repositories
-- [ ] Create services for business logic
-- [ ] Create CRUD operations for each
-- [ ] Design detail view dialogs
+### 9.2 Artifacts & Lore ✓
+- [x] Create Artifact model
+- [x] Create Lore/Mythology model with LoreType enum
+- [x] Implement respective repositories
+- [x] Create services for business logic
+- [x] Create CRUD operations for each
+- [x] Design detail view dialogs
 
 </details>
 ---
 
 <details>
-<summary><b>Phase 9: Search & Filter</b></summary>
+<summary><b>Phase 8: Search & Filter</b> ✓</summary>
 
-### 8.1 Basic Search
-- [ ] Implement global text search across entities
-- [ ] Create search results view widget
-- [ ] Add search by entity type filter
-- [ ] Implement search highlighting in results
-- [ ] Create SearchService for query logic
+### 8.1 Basic Search ✓
+- [x] Implement global text search across entities
+- [x] Create search results view widget
+- [x] Add search by entity type filter
+- [x] Implement search highlighting in results
+- [x] Create SearchService for query logic
 
-### 8.2 Advanced Filtering
-- [ ] Create filter panel UI widget
-- [ ] Implement filter by tags
-- [ ] Add filter by location
-- [ ] Add filter by species/race
-- [ ] Add filter by date/timeline
-- [ ] Implement saved filter presets (stored in database)
+### 8.2 Advanced Filtering ✓
+- [x] Create filter panel UI widget
+- [x] Implement filter by tags
+- [x] Add filter by location
+- [x] Add filter by species/race
+- [x] Add filter by date/timeline
+- [x] Implement saved filter presets (stored in database)
 
 </details>
 
@@ -458,8 +458,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 | Phase 5: Notable Figures | 🟢 Complete | 100% |
 | Phase 6: Relationships & Connections | 🟢 Complete | 100% |
 | Phase 7: Events & Timeline | 🟢 Complete | 100% |
-| Phase 8: Search & Filter | ⚪ Not Started | 0% |
-| Phase 9: Additional Entities | ⚪ Not Started | 0% |
+| Phase 8: Search & Filter | 🟢 Complete | 100% |
+| Phase 9: Additional Entities | 🟢 Complete | 100% |
 | Phase 10: Rich Content | ⚪ Not Started | 0% |
 | Phase 11: Visualization | ⚪ Not Started | 0% |
 | Phase 12: Data Management | ⚪ Not Started | 0% |
