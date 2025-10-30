@@ -7,11 +7,11 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python)](https://www.python.org/)
 [![PyQt6](https://img.shields.io/badge/PyQt6-UI_Framework-41CD52?logo=qt)](https://www.riverbankcomputing.com/software/pyqt/)
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite)](https://www.sqlite.org/)
-[![License](https://img.shields.io/badge/license-TBD-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 *Empower your storytelling with a powerful desktop application designed for authors, storytellers, and creators to build and manage detailed fictional universes.*
 
-[Features](#-features) • [Getting Started](#-getting-started) • [Development](#-development) • [Roadmap](ROADMAP.md) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](QUICKSTART.md) • [User Guide](USER_GUIDE.md) • [Developer Guide](DEVELOPER_GUIDE.md) • [Roadmap](ROADMAP.md)
 
 </div>
 
@@ -149,56 +149,46 @@ Before you begin, ensure you have the following installed:
 - **pip** (Python package installer)
 - **Qt6** libraries (installed automatically with PyQt6)
 
-### Installation
+### Installation & Quick Start
 
-> 📦 **Coming Soon**: Installation packages will be available when the first release is published.
+📚 **[See Quick Start Guide →](QUICKSTART.md)** for detailed installation and getting started instructions.
 
-For now, you can build from source (see [Development Setup](#development-setup) below).
+**Quick Steps**:
+1. Clone repository and install dependencies
+2. Launch WorldBuilder
+3. Create your first universe
+4. Start building your world!
 
-### Quick Start
-
-1. **Launch WorldBuilder**
-2. **Create a New Universe** - Start with a blank canvas
-3. **Add Your First Entity** - Create a character, location, or event
-4. **Build Relationships** - Connect entities to establish your world's structure
-5. **Explore & Expand** - Use the timeline, search, and visualization tools
+> 📦 **Coming Soon**: Standalone installation packages will be available when the first release is published.
 
 ---
 
 ## 💻 Development
 
-### Development Setup
+📖 **[See Developer Guide →](DEVELOPER_GUIDE.md)** for comprehensive technical documentation.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/MrFrey75/WorldBuilder.git
-   cd WorldBuilder
-   ```
-
-2. **Create a virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Run the application**
-   ```bash
-   python src/worldbuilder/main.py
-   ```
-
-### Building for Release
+### Quick Development Setup
 
 ```bash
-# Install PyInstaller
-pip install pyinstaller
+# Clone repository
+git clone https://github.com/MrFrey75/WorldBuilder.git
+cd WorldBuilder
 
-# Build executable
-pyinstaller --windowed --onefile --name WorldBuilder src/worldbuilder/main.py
+# Set up virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run application
+python src/worldbuilder/main.py
+```
+
+### Running Tests
+
+```bash
+python -m pytest src/tests/ -v
 ```
 
 ---
@@ -257,12 +247,15 @@ Contributions are welcome! Whether you're fixing bugs, adding features, or impro
 
 ## 📄 License
 
-*License information to be added*
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## 📞 Contact & Support
 
+- **Quick Start**: [QUICKSTART.md](QUICKSTART.md)
+- **User Guide**: [USER_GUIDE.md](USER_GUIDE.md)
+- **Developer Guide**: [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)
 - **Issues**: [GitHub Issues](https://github.com/MrFrey75/WorldBuilder/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/MrFrey75/WorldBuilder/discussions)
 

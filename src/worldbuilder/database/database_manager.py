@@ -14,6 +14,7 @@ class DatabaseManager:
         Args:
             db_path: Path to SQLite database file. If None, uses in-memory database.
         """
+        self.db_path = db_path
         if db_path:
             db_url = f"sqlite:///{db_path}"
         else:
@@ -22,6 +23,7 @@ class DatabaseManager:
         self.engine = create_engine(db_url, echo=False)
         self.session_factory = sessionmaker(bind=self.engine)
         self.Session = scoped_session(self.session_factory)
+        self.session = self.Session()
     
     def create_tables(self):
         """Create all tables defined in models."""
