@@ -205,7 +205,7 @@ pyinstaller --windowed --onefile --name WorldBuilder src/worldbuilder/main.py
 
 ## 🗺️ Development Roadmap
 
-### Current Status: **Phase 13 - Data Management** (Next Phase)
+### Current Status: **Phase 14 - Testing** (Next Phase)
 
 We're building WorldBuilder through a carefully planned 14-phase development approach. Each phase contains specific, actionable tasks organized into sub-phases.
 
@@ -225,8 +225,8 @@ We're building WorldBuilder through a carefully planned 14-phase development app
 - **Phase 10**: Visualization ✓ Complete
 - **Phase 11**: Rich Content ✓ Complete
 - **Phase 12**: Polish & UX ✓ Complete
-- **Phase 13**: Data Management (Import/Export, Backup) *(Next)*
-- **Phase 14**: Testing
+- **Phase 13**: Data Management (Import/Export, Backup) ✓ Complete
+- **Phase 14**: Testing *(Next)*
 - **Deployment**: Post-development (separate from main roadmap)
 
 See the **[detailed roadmap](ROADMAP.md)** for complete task breakdowns and progress tracking.

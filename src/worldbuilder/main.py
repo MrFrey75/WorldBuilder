@@ -22,8 +22,8 @@ class WorldBuilderApp:
         self.universe_service = None
         self._setup_database()
         
-        # Create main window with universe service
-        self.main_window = MainWindow(self.universe_service)
+        # Create main window with universe service and db_manager
+        self.main_window = MainWindow(self.universe_service, self.db_manager)
         
         # Connect signals
         self.main_window.theme_changed.connect(self._on_theme_changed)

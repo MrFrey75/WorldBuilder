@@ -5,6 +5,8 @@ from worldbuilder.views.universe_list_view import UniverseListView
 from worldbuilder.views.universe_details_panel import UniverseDetailsPanel
 from worldbuilder.views.recent_universes_widget import RecentUniversesWidget
 from worldbuilder.views.universe_settings_dialog import UniverseSettingsDialog
+from worldbuilder.views.export_import_dialog import ExportDialog, ImportDialog
+from worldbuilder.views.backup_dialog import BackupDialog
 
 __all__ = [
     "MainWindow", 
@@ -12,5 +14,8 @@ __all__ = [
     "UniverseListView",
     "UniverseDetailsPanel",
     "RecentUniversesWidget",
-    "UniverseSettingsDialog"
+    "UniverseSettingsDialog",
+    "ExportDialog",
+    "ImportDialog",
+    "BackupDialog"
 ]

@@ -10,7 +10,12 @@ from worldbuilder.views.universe_dialog import UniverseDialog
 from worldbuilder.views.universe_details_panel import UniverseDetailsPanel
 from worldbuilder.views.recent_universes_widget import RecentUniversesWidget
 from worldbuilder.views.universe_settings_dialog import UniverseSettingsDialog
+from worldbuilder.views.export_import_dialog import ExportDialog, ImportDialog
+from worldbuilder.views.backup_dialog import BackupDialog
 from worldbuilder.services import UniverseService
+from worldbuilder.services.export_import_service import ExportImportService
+from worldbuilder.services.backup_service import BackupService
+from worldbuilder.database import DatabaseManager
 
 
 class MainWindow(QMainWindow):
@@ -20,11 +25,19 @@ class MainWindow(QMainWindow):
     theme_changed = pyqtSignal(Theme)
     universe_opened = pyqtSignal(int)  # Emits universe ID
     
-    def __init__(self, universe_service: UniverseService = None):
+    def __init__(self, universe_service: UniverseService = None, db_manager: DatabaseManager = None):
         super().__init__()
         self.universe_service = universe_service
+        self.db_manager = db_manager
         self.setWindowTitle("WorldBuilder")
         self.setGeometry(100, 100, 1200, 800)
+        
+        # Initialize services
+        self.export_import_service = None
+        self.backup_service = None
+        if db_manager:
+            self.export_import_service = ExportImportService(db_manager.session)
+            self.backup_service = BackupService(db_manager.db_path)
         
         self._setup_ui()
         self._create_menu_bar()
@@ -87,6 +100,35 @@ class MainWindow(QMainWindow):
         open_action.setShortcut("Ctrl+O")
         open_action.triggered.connect(self._on_open_selected_universe)
         file_menu.addAction(open_action)
+        
+        file_menu.addSeparator()
+        
+        # Export/Import submenu
+        export_import_menu = file_menu.addMenu("Export/Import")
+        
+        export_action = QAction("&Export Universe...", self)
+        export_action.setShortcut("Ctrl+Shift+E")
+        export_action.triggered.connect(self._on_export_universe)
+        export_import_menu.addAction(export_action)
+        
+        import_action = QAction("&Import Universe...", self)
+        import_action.setShortcut("Ctrl+Shift+I")
+        import_action.triggered.connect(self._on_import_universe)
+        export_import_menu.addAction(import_action)
+        
+        file_menu.addSeparator()
+        
+        # Backup submenu
+        backup_menu = file_menu.addMenu("Backup")
+        
+        create_backup_action = QAction("&Create Backup...", self)
+        create_backup_action.setShortcut("Ctrl+B")
+        create_backup_action.triggered.connect(self._on_create_backup)
+        backup_menu.addAction(create_backup_action)
+        
+        manage_backups_action = QAction("&Manage Backups...", self)
+        manage_backups_action.triggered.connect(self._on_manage_backups)
+        backup_menu.addAction(manage_backups_action)
         
         file_menu.addSeparator()
         
@@ -326,6 +368,102 @@ class MainWindow(QMainWindow):
             "About WorldBuilder",
             "<h3>WorldBuilder v0.1.0</h3>"
             "<p>A comprehensive worldbuilding and universe creation tool.</p>"
-            "<p>Phase 2.2 Complete - Universe Management UI</p>"
+            "<p>Phase 13 Complete - Data Management (Export/Import & Backup/Restore)</p>"
             "<p>© 2025 WorldBuilder Team</p>"
         )
+    
+    def _on_export_universe(self):
+        """Handle export universe menu action."""
+        universe_id = self.universe_list_view.get_selected_universe_id()
+        if not universe_id:
+            QMessageBox.information(self, "No Selection", "Please select a universe to export.")
+            return
+        
+        if not self.export_import_service or not self.universe_service:
+            QMessageBox.warning(self, "Service Unavailable", "Export service is not available.")
+            return
+        
+        universe = self.universe_service.get_universe(universe_id)
+        if not universe:
+            return
+        
+        dialog = ExportDialog(self, universe.name)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            settings = dialog.get_export_settings()
+            
+            if not settings["output_path"]:
+                QMessageBox.warning(self, "No Output File", "Please specify an output file.")
+                return
+            
+            try:
+                stats = self.export_import_service.export_universe(
+                    universe_id=universe_id,
+                    output_path=settings["output_path"],
+                    selective=settings["selective"],
+                    entity_types=settings.get("entity_types")
+                )
+                
+                QMessageBox.information(
+                    self,
+                    "Export Complete",
+                    f"Universe exported successfully!\n\n"
+                    f"Total entities: {stats['total_entities']}\n"
+                    f"File size: {stats['file_size'] / 1024:.1f} KB\n"
+                    f"Output: {stats['output_file']}"
+                )
+                self.set_status_message(f"Exported {universe.name}")
+                
+            except Exception as e:
+                QMessageBox.critical(self, "Export Failed", f"Error exporting universe: {str(e)}")
+    
+    def _on_import_universe(self):
+        """Handle import universe menu action."""
+        if not self.export_import_service:
+            QMessageBox.warning(self, "Service Unavailable", "Import service is not available.")
+            return
+        
+        dialog = ImportDialog(self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            settings = dialog.get_import_settings()
+            
+            if not settings["input_path"]:
+                QMessageBox.warning(self, "No Input File", "Please specify an input file.")
+                return
+            
+            try:
+                stats = self.export_import_service.import_universe(
+                    input_path=settings["input_path"],
+                    create_new=settings["create_new"]
+                )
+                
+                QMessageBox.information(
+                    self,
+                    "Import Complete",
+                    f"Universe imported successfully!\n\n"
+                    f"Total entities: {stats['total_entities']}\n"
+                    f"Skipped: {stats.get('skipped', 0)}\n"
+                    f"Errors: {len(stats.get('errors', []))}"
+                )
+                self.set_status_message("Universe imported")
+                self._load_universes()  # Refresh the list
+                
+            except Exception as e:
+                QMessageBox.critical(self, "Import Failed", f"Error importing universe: {str(e)}")
+    
+    def _on_create_backup(self):
+        """Handle create backup menu action."""
+        if not self.backup_service:
+            QMessageBox.warning(self, "Service Unavailable", "Backup service is not available.")
+            return
+        
+        dialog = BackupDialog(self, self.backup_service)
+        dialog.exec()
+    
+    def _on_manage_backups(self):
+        """Handle manage backups menu action."""
+        if not self.backup_service:
+            QMessageBox.warning(self, "Service Unavailable", "Backup service is not available.")
+            return
+        
+        dialog = BackupDialog(self, self.backup_service)
+        dialog.exec()
