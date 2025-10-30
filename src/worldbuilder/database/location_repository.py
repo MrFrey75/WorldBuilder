@@ -2,7 +2,8 @@
 from typing import List, Optional
 from sqlalchemy import and_
 from worldbuilder.database.repository import BaseRepository
-from worldbuilder.models.location import Location, LocationType
+from worldbuilder.models.location import Location
+from worldbuilder.enums import LocationType
 
 
 class LocationRepository(BaseRepository[Location]):

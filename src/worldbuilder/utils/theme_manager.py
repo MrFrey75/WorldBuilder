@@ -1,13 +1,7 @@
 """Theme manager for application styling."""
-from enum import Enum
 from PyQt6.QtGui import QPalette, QColor
 from PyQt6.QtCore import Qt
-
-
-class Theme(Enum):
-    """Available application themes."""
-    LIGHT = "light"
-    DARK = "dark"
+from worldbuilder.enums import Theme
 
 
 class ThemeManager:

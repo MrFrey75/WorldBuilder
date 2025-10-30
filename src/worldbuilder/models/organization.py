@@ -1,30 +1,9 @@
 """Organization model for groups, guilds, kingdoms, etc."""
-from enum import Enum
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from worldbuilder.models.base_entity import Base
-
-
-class OrganizationType(str, Enum):
-    """Types of organizations."""
-    KINGDOM = "kingdom"
-    EMPIRE = "empire"
-    NATION = "nation"
-    CITY_STATE = "city_state"
-    GUILD = "guild"
-    RELIGIOUS = "religious"
-    MILITARY = "military"
-    CRIMINAL = "criminal"
-    MERCHANT = "merchant"
-    ACADEMIC = "academic"
-    SECRET_SOCIETY = "secret_society"
-    TRIBAL = "tribal"
-    NOBLE_HOUSE = "noble_house"
-    CLAN = "clan"
-    FACTION = "faction"
-    POLITICAL = "political"
-    OTHER = "other"
+from worldbuilder.enums import OrganizationType
 
 
 class Organization(Base):

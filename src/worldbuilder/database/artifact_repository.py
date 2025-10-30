@@ -1,7 +1,8 @@
 """Repository for Artifact entities."""
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from worldbuilder.models import Artifact, ArtifactType
+from worldbuilder.models import Artifact
+from worldbuilder.enums import ArtifactType
 
 
 class ArtifactRepository:

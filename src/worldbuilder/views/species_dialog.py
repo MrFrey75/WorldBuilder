@@ -3,7 +3,8 @@ from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QFormLayout, QLineEdit,
                              QTextEdit, QPushButton, QLabel, QComboBox, 
                              QCheckBox, QHBoxLayout, QGroupBox, QScrollArea, QWidget)
 from PyQt6.QtCore import Qt
-from worldbuilder.models.species import Species, SpeciesType
+from worldbuilder.models.species import Species
+from worldbuilder.enums import SpeciesType
 import json
 
 

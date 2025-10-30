@@ -1,8 +1,8 @@
 """Services for Organization, Artifact, and Lore entities."""
 from typing import List, Optional
 from worldbuilder.database import OrganizationRepository, ArtifactRepository, LoreRepository
-from worldbuilder.models import (Organization, OrganizationType, Artifact, ArtifactType, 
-                                 Lore, LoreType)
+from worldbuilder.models import Organization, Artifact, Lore
+from worldbuilder.enums import OrganizationType, ArtifactType, LoreType
 
 
 class OrganizationService:

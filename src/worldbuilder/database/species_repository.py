@@ -2,7 +2,8 @@
 from typing import List, Optional
 from sqlalchemy import and_
 from worldbuilder.database.repository import BaseRepository
-from worldbuilder.models.species import Species, SpeciesType
+from worldbuilder.models.species import Species
+from worldbuilder.enums import SpeciesType
 
 
 class SpeciesRepository(BaseRepository[Species]):

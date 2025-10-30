@@ -1,7 +1,8 @@
 """Repository for Lore entities."""
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from worldbuilder.models import Lore, LoreType
+from worldbuilder.models import Lore
+from worldbuilder.enums import LoreType
 
 
 class LoreRepository:

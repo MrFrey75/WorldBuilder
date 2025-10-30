@@ -1,33 +1,9 @@
 """Lore model for mythology, legends, stories, and beliefs."""
-from enum import Enum
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from worldbuilder.models.base_entity import Base
-
-
-class LoreType(str, Enum):
-    """Types of lore entries."""
-    MYTH = "myth"
-    LEGEND = "legend"
-    FOLKTALE = "folktale"
-    PROPHECY = "prophecy"
-    RELIGION = "religion"
-    BELIEF_SYSTEM = "belief_system"
-    CREATION_MYTH = "creation_myth"
-    DEITY = "deity"
-    SPIRIT = "spirit"
-    COSMOLOGY = "cosmology"
-    AFTERLIFE = "afterlife"
-    MAGIC_SYSTEM = "magic_system"
-    RITUAL = "ritual"
-    TRADITION = "tradition"
-    HOLIDAY = "holiday"
-    SUPERSTITION = "superstition"
-    HISTORICAL_ACCOUNT = "historical_account"
-    SONG = "song"
-    POEM = "poem"
-    OTHER = "other"
+from worldbuilder.enums import LoreType
 
 
 class Lore(Base):

@@ -1,0 +1,27 @@
+"""Lore-related enumerations."""
+from enum import Enum
+
+
+class LoreType(str, Enum):
+    """Types of lore entries."""
+    UNKWNOWN = "unknown"
+    MYTH = "myth"
+    LEGEND = "legend"
+    FOLKTALE = "folktale"
+    PROPHECY = "prophecy"
+    RELIGION = "religion"
+    BELIEF_SYSTEM = "belief_system"
+    CREATION_MYTH = "creation_myth"
+    DEITY = "deity"
+    SPIRIT = "spirit"
+    COSMOLOGY = "cosmology"
+    AFTERLIFE = "afterlife"
+    MAGIC_SYSTEM = "magic_system"
+    RITUAL = "ritual"
+    TRADITION = "tradition"
+    HOLIDAY = "holiday"
+    SUPERSTITION = "superstition"
+    HISTORICAL_ACCOUNT = "historical_account"
+    SONG = "song"
+    POEM = "poem"
+    OTHER = "other"

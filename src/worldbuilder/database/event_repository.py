@@ -2,7 +2,8 @@
 from typing import List, Optional
 from sqlalchemy import and_
 from worldbuilder.database.repository import BaseRepository
-from worldbuilder.models.event import Event, Timeline, EventType, EventImportance
+from worldbuilder.models.event import Event, Timeline
+from worldbuilder.enums import EventType, EventImportance
 
 
 class EventRepository(BaseRepository[Event]):

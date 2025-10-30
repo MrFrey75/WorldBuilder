@@ -1,30 +1,9 @@
 """Artifact model for magical items, relics, weapons, etc."""
-from enum import Enum
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from worldbuilder.models.base_entity import Base
-
-
-class ArtifactType(str, Enum):
-    """Types of artifacts."""
-    WEAPON = "weapon"
-    ARMOR = "armor"
-    ACCESSORY = "accessory"
-    TOOL = "tool"
-    BOOK = "book"
-    SCROLL = "scroll"
-    POTION = "potion"
-    RELIC = "relic"
-    ARTIFACT = "artifact"
-    MAGICAL_ITEM = "magical_item"
-    TECHNOLOGY = "technology"
-    VEHICLE = "vehicle"
-    BUILDING = "building"
-    TREASURE = "treasure"
-    ART = "art"
-    JEWELRY = "jewelry"
-    OTHER = "other"
+from worldbuilder.enums import ArtifactType
 
 
 class Artifact(Base):

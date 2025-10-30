@@ -1,25 +1,8 @@
 """Location model for hierarchical places in universes."""
 from sqlalchemy import Column, String, Integer, ForeignKey, Enum as SQLEnum
 from sqlalchemy.orm import relationship
-from enum import Enum
 from worldbuilder.models.base_entity import BaseEntity
-
-
-class LocationType(Enum):
-    """Types of locations in hierarchical order."""
-    UNIVERSE = "Universe"
-    GALAXY = "Galaxy"
-    STAR_SYSTEM = "Star System"
-    PLANET = "Planet"
-    CONTINENT = "Continent"
-    REGION = "Region"
-    COUNTRY = "Country"
-    STATE = "State/Province"
-    CITY = "City"
-    DISTRICT = "District"
-    BUILDING = "Building"
-    ROOM = "Room"
-    OTHER = "Other"
+from worldbuilder.enums import LocationType
 
 
 class Location(BaseEntity):

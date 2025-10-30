@@ -2,7 +2,8 @@
 from typing import List, Optional, Tuple
 from sqlalchemy import and_, or_
 from worldbuilder.database.repository import BaseRepository
-from worldbuilder.models.relationship import Relationship, RelationshipType, RelationshipStrength
+from worldbuilder.models.relationship import Relationship
+from worldbuilder.enums import RelationshipType, RelationshipStrength
 
 
 class RelationshipRepository(BaseRepository[Relationship]):

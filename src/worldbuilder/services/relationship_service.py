@@ -1,6 +1,7 @@
 """Relationship service for business logic operations."""
 from typing import List, Optional, Tuple
-from worldbuilder.models.relationship import Relationship, RelationshipType, RelationshipStrength
+from worldbuilder.models.relationship import Relationship
+from worldbuilder.enums import RelationshipType, RelationshipStrength
 from worldbuilder.database.relationship_repository import RelationshipRepository
 
 

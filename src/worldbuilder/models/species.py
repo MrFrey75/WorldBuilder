@@ -2,20 +2,8 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Text, Boolean, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import JSON
-from enum import Enum
 from worldbuilder.models.base_entity import BaseEntity
-
-
-class SpeciesType(Enum):
-    """Classification types for species."""
-    SENTIENT = "Sentient"
-    NON_SENTIENT = "Non-Sentient"
-    MAGICAL = "Magical"
-    DIVINE = "Divine"
-    UNDEAD = "Undead"
-    CONSTRUCT = "Construct"
-    HYBRID = "Hybrid"
-    OTHER = "Other"
+from worldbuilder.enums import SpeciesType
 
 
 class Species(BaseEntity):

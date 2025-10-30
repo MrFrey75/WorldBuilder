@@ -1,6 +1,7 @@
 """Event and Timeline services for business logic operations."""
 from typing import List, Optional, Dict
-from worldbuilder.models.event import Event, Timeline, EventType, EventImportance, DatePrecision
+from worldbuilder.models.event import Event, Timeline
+from worldbuilder.enums import EventType, EventImportance, DatePrecision
 from worldbuilder.database.event_repository import EventRepository, TimelineRepository
 
 

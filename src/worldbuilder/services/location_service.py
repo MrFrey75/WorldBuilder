@@ -1,6 +1,7 @@
 """Location service for business logic operations."""
 from typing import List, Optional
-from worldbuilder.models.location import Location, LocationType
+from worldbuilder.models.location import Location
+from worldbuilder.enums import LocationType
 from worldbuilder.database.location_repository import LocationRepository
 
 

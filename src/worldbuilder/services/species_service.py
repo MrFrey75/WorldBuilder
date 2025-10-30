@@ -1,6 +1,7 @@
 """Species service for business logic operations."""
 from typing import List, Optional, Dict, Any
-from worldbuilder.models.species import Species, SpeciesType
+from worldbuilder.models.species import Species
+from worldbuilder.enums import SpeciesType
 from worldbuilder.database.species_repository import SpeciesRepository
 
 

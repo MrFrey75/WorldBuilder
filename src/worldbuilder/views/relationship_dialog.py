@@ -3,7 +3,8 @@ from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QFormLayout, QLineEdit,
                              QTextEdit, QPushButton, QLabel, QComboBox, 
                              QCheckBox, QHBoxLayout, QGroupBox)
 from PyQt6.QtCore import Qt
-from worldbuilder.models.relationship import Relationship, RelationshipType, RelationshipStrength
+from worldbuilder.models.relationship import Relationship
+from worldbuilder.enums import RelationshipType, RelationshipStrength
 
 
 class RelationshipDialog(QDialog):

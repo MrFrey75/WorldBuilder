@@ -1,7 +1,8 @@
 """Repository for Organization entities."""
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from worldbuilder.models import Organization, OrganizationType
+from worldbuilder.models import Organization
+from worldbuilder.enums import OrganizationType
 
 
 class OrganizationRepository:
