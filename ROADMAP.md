@@ -1,12 +1,12 @@
 # 🗺️ WorldBuilder Development Roadmap
 
-## Current Status: **Phase 1 - Foundation** 🏗️
+## Current Status: **Phase 2 - Universe Management** 🚀
 
 This document outlines the complete development roadmap for WorldBuilder. The project is organized into 14 distinct phases, each containing multiple sub-phases with specific, actionable tasks.
 
-> **Last Updated**: October 29, 2025
+> **Last Updated**: October 30, 2025
 > 
-> **Platform**: Python 3.11+ Desktop Application (PyQt/Tkinter)
+> **Platform**: Python 3.11+ Desktop Application (PyQt6)
 
 ---
 
@@ -23,33 +23,36 @@ WorldBuilder is being developed in a phased approach to ensure:
 <details open>
 <summary><b>Phase 1: Foundation & Setup</b> ✓ (Current)</summary>
 
-### 1.1 Project Infrastructure
+### 1.1 Project Infrastructure ✓
 - [x] Create project directory structure
 - [x] Set up Python package structure (worldbuilder/)
 - [x] Create requirements.txt with dependencies
 - [x] Set up version control and .gitignore
-- [x] Initialize PyQt/Tkinter UI framework
+- [x] Initialize PyQt6 UI framework
+- [x] Create setup.py for package configuration
 
-### 1.2 Core Architecture
+### 1.2 Core Architecture ✓
 - [x] Design database schema (tables for entities, relationships)
-- [x] Create base entity models
-- [x] Implement repository pattern interfaces
-- [x] Set up SQLAlchemy ORM or SQLite3 layer
-- [x] Create base ViewModel/Controller class
+- [x] Create base entity models (BaseEntity, Universe)
+- [x] Implement repository pattern interfaces (IRepository, BaseRepository)
+- [x] Set up SQLAlchemy ORM layer
+- [x] Create DatabaseManager for session management
+- [x] Create base Controller class (MVC pattern)
 
-### 1.3 Basic UI Framework
-- [x] Create main application window
-- [x] Implement navigation/menu system
-- [x] Set up signal/slot or event infrastructure
-- [x] Create resource dictionaries for styles/themes
-- [x] Implement basic theme support (light/dark)
+### 1.3 Basic UI Framework ✓
+- [x] Create main application window (MainWindow)
+- [x] Implement navigation/menu system (File, Edit, View, Help)
+- [x] Set up signal/slot infrastructure (PyQt6 signals)
+- [x] Create ThemeManager for styling
+- [x] Implement theme support (light/dark modes)
+- [x] Create status bar for user feedback
 
 </details>
 
 ---
 
-<details>
-<summary><b>Phase 2: Universe Management</b></summary>
+<details open>
+<summary><b>Phase 2: Universe Management</b> (Current)</summary>
 
 ### 2.1 Universe CRUD
 - [ ] Create Universe model and database table
