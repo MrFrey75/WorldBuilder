@@ -25,5 +25,4 @@ class OrganizationType(str, Enum):
     SOCIAL = "social"
     SPORTING = "sporting"
     PROFESSIONAL = "professional"
-    GUILD = "guild"
     OTHER = "other"
