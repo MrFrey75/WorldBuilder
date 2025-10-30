@@ -1,10 +1,15 @@
 """Main application window."""
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QMenuBar, QMenu, QStatusBar, QLabel, QMessageBox
+from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
+                             QSplitter, QMenuBar, QMenu, QStatusBar, QLabel, 
+                             QMessageBox, QDialog)
 from PyQt6.QtCore import pyqtSignal, Qt
 from PyQt6.QtGui import QAction
 from worldbuilder.utils import ThemeManager, Theme
 from worldbuilder.views.universe_list_view import UniverseListView
 from worldbuilder.views.universe_dialog import UniverseDialog
+from worldbuilder.views.universe_details_panel import UniverseDetailsPanel
+from worldbuilder.views.recent_universes_widget import RecentUniversesWidget
+from worldbuilder.views.universe_settings_dialog import UniverseSettingsDialog
 from worldbuilder.services import UniverseService
 
 
@@ -38,14 +43,33 @@ class MainWindow(QMainWindow):
         # Main layout
         self.main_layout = QVBoxLayout(self.central_widget)
         
+        # Recent universes widget
+        self.recent_widget = RecentUniversesWidget()
+        self.recent_widget.universe_selected.connect(self._on_open_universe)
+        self.main_layout.addWidget(self.recent_widget)
+        
+        # Splitter for list and details
+        splitter = QSplitter(Qt.Orientation.Horizontal)
+        
         # Universe list view
         self.universe_list_view = UniverseListView()
         self.universe_list_view.create_requested.connect(self._on_create_universe)
         self.universe_list_view.edit_requested.connect(self._on_edit_universe)
         self.universe_list_view.delete_requested.connect(self._on_delete_universe)
         self.universe_list_view.open_requested.connect(self._on_open_universe)
+        self.universe_list_view.universe_selected.connect(self._on_universe_selected)
+        splitter.addWidget(self.universe_list_view)
         
-        self.main_layout.addWidget(self.universe_list_view)
+        # Universe details panel
+        self.details_panel = UniverseDetailsPanel()
+        self.details_panel.edit_requested.connect(self._on_edit_universe)
+        splitter.addWidget(self.details_panel)
+        
+        # Set splitter proportions (2:1 ratio)
+        splitter.setStretchFactor(0, 2)
+        splitter.setStretchFactor(1, 1)
+        
+        self.main_layout.addWidget(splitter)
     
     def _create_menu_bar(self):
         """Create the menu bar."""
@@ -90,6 +114,13 @@ class MainWindow(QMainWindow):
         delete_universe_action.setShortcut("Delete")
         delete_universe_action.triggered.connect(self._on_delete_selected_universe)
         edit_menu.addAction(delete_universe_action)
+        
+        edit_menu.addSeparator()
+        
+        settings_action = QAction("Universe &Settings", self)
+        settings_action.setShortcut("Ctrl+Shift+S")
+        settings_action.triggered.connect(self._on_universe_settings)
+        edit_menu.addAction(settings_action)
         
         edit_menu.addSeparator()
         
@@ -140,6 +171,7 @@ class MainWindow(QMainWindow):
         try:
             universes = self.universe_service.get_all_universes()
             self.universe_list_view.load_universes(universes)
+            self.recent_widget.update_recent(universes)
             self.set_status_message(f"Loaded {len(universes)} universe(s)")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load universes: {str(e)}")
@@ -229,6 +261,7 @@ class MainWindow(QMainWindow):
             self.universe_service.set_active_universe(universe_id)
             universe = self.universe_service.get_universe(universe_id)
             self._load_universes()
+            self.recent_widget.add_recent(universe_id)
             self.set_status_message(f"Opened universe: {universe.name}")
             self.universe_opened.emit(universe_id)
             
@@ -249,6 +282,43 @@ class MainWindow(QMainWindow):
         else:
             QMessageBox.information(self, "No Selection", "Please select a universe to open.")
     
+    def _on_universe_selected(self, universe_id: int):
+        """Handle universe selection in list.
+        
+        Args:
+            universe_id: ID of selected universe
+        """
+        if not self.universe_service:
+            return
+        
+        universe = self.universe_service.get_universe(universe_id)
+        self.details_panel.set_universe(universe)
+    
+    def _on_universe_settings(self):
+        """Handle universe settings menu action."""
+        universe_id = self.universe_list_view.get_selected_universe_id()
+        if not universe_id:
+            QMessageBox.information(self, "No Selection", "Please select a universe to configure settings.")
+            return
+        
+        if not self.universe_service:
+            return
+        
+        universe = self.universe_service.get_universe(universe_id)
+        if not universe:
+            return
+        
+        dialog = UniverseSettingsDialog(self, universe)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            settings = dialog.get_settings()
+            # TODO: Save settings to database in future phases
+            self.set_status_message(f"Settings saved for: {universe.name}")
+            QMessageBox.information(
+                self,
+                "Settings Saved",
+                "Universe settings have been configured.\n\nNote: Full settings persistence will be implemented in future phases."
+            )
+    
     def _show_about(self):
         """Show about dialog."""
         QMessageBox.about(
@@ -256,6 +326,6 @@ class MainWindow(QMainWindow):
             "About WorldBuilder",
             "<h3>WorldBuilder v0.1.0</h3>"
             "<p>A comprehensive worldbuilding and universe creation tool.</p>"
-            "<p>Phase 2.1 Complete - Universe Management</p>"
+            "<p>Phase 2.2 Complete - Universe Management UI</p>"
             "<p>© 2025 WorldBuilder Team</p>"
         )

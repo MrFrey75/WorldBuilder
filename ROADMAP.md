@@ -1,10 +1,11 @@
 # 🗺️ WorldBuilder Development Roadmap
 
-## Current Status: **Phase 2 - Universe Management** 🚀
+## Current Status: **Phase 7 - Events & Timeline** ✓ Complete
 
 This document outlines the complete development roadmap for WorldBuilder. The project is organized into 14 distinct phases, each containing multiple sub-phases with specific, actionable tasks.
 
 > **Last Updated**: October 30, 2025
+> **Phase Reordering**: Phase 6 (Search & Filter) moved to Phase 8 - will be implemented after Events & Timeline System
 > 
 > **Platform**: Python 3.11+ Desktop Application (PyQt6)
 
@@ -17,6 +18,19 @@ WorldBuilder is being developed in a phased approach to ensure:
 - ✅ Incremental delivery of functionality
 - ✅ Maintainable and testable codebase
 - ✅ Clear milestones and progress tracking
+
+### Phase Ordering Note
+
+**Phase 6 has been reordered** to come after Phase 7 (Events & Timeline). This change was made because:
+- Search & Filter functionality benefits from having all major entity types implemented first
+- Timeline/Event search filters require the timeline system to exist
+- More comprehensive and useful search can be implemented once Relationships and Events are in place
+- This creates a more logical development flow: Core Entities → Relationships → Events → Search
+
+**New Phase Order:**
+- Phase 6: Relationships & Connections (formerly Phase 7)
+- Phase 7: Events & Timeline System (formerly Phase 8)
+- Phase 8: Search & Filter (formerly Phase 6)
 
 ---
 
@@ -51,8 +65,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ---
 
-<details open>
-<summary><b>Phase 2: Universe Management</b> (Current)</summary>
+<details>
+<summary><b>Phase 2: Universe Management</b> ✓</summary>
 
 ### 2.1 Universe CRUD ✓
 - [x] Create Universe model and database table
@@ -63,56 +77,75 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [x] Add Universe edit functionality
 - [x] Add Universe deletion with confirmation
 
-### 2.2 Universe UI
+### 2.2 Universe UI ✓
 - [x] Design Universe management view (PyQt6 widget)
 - [x] Create Universe list view/grid (table with actions)
-- [ ] Implement Universe details panel
-- [ ] Add recent universes list
-- [ ] Create Universe settings page
+- [x] Implement Universe details panel
+- [x] Add recent universes list
+- [x] Create Universe settings page
 
 </details>
 
 ---
 
 <details>
-<summary><b>Phase 3: Location System</b></summary>
+<summary><b>Phase 3: Location System</b> ✓</summary>
 
-### 3.1 Location Data Layer
-- [ ] Create Location model with parent reference
-- [ ] Design location hierarchy database schema (self-referencing)
-- [ ] Implement LocationRepository with hierarchy methods
-- [ ] Create LocationService for business logic
-- [ ] Add location parent-child relationship methods
-- [ ] Create location type enumeration (Continent, Region, City, Building, etc.)
+### 3.1 Location Data Layer ✓
+- [x] Create Location model with parent reference
+- [x] Design location hierarchy database schema (self-referencing)
+- [x] Implement LocationRepository with hierarchy methods
+- [x] Create LocationService for business logic
+- [x] Add location parent-child relationship methods
+- [x] Create location type enumeration (Continent, Region, City, Building, etc.)
 
-### 3.2 Location CRUD Operations
-- [ ] Implement Create Location functionality
-- [ ] Implement Read/View Location details
-- [ ] Implement Update Location functionality
-- [ ] Implement Delete Location (with cascade options)
-- [ ] Add location parent selection/assignment
+### 3.2 Location CRUD Operations ✓
+- [x] Implement Create Location functionality
+- [x] Implement Read/View Location details
+- [x] Implement Update Location functionality
+- [x] Implement Delete Location (with cascade options)
+- [x] Add location parent selection/assignment
 
-### 3.3 Location UI
-- [ ] Create Location list view
-- [ ] Design Location detail editor dialog
-- [ ] Implement hierarchical tree widget for locations
-- [ ] Add location type selector
-- [ ] Create location parent picker
-- [ ] Implement location breadcrumb navigation
-- [ ] Add expand/collapse tree functionality
+### 3.3 Location UI ✓
+- [x] Create Location list view
+- [x] Design Location detail editor dialog
+- [x] Implement hierarchical tree widget for locations
+- [x] Add location type selector
+- [x] Create location parent picker
+- [x] Implement location breadcrumb navigation
+- [x] Add expand/collapse tree functionality
 
 </details>
 
 ---
 
 <details>
-<summary><b>Phase 4: Species & Races System</b></summary>
+<summary><b>Phase 4: Species & Races System</b> ✓</summary>
 
-### 4.1 Species Data Layer
-- [ ] Create Species/Race model
-- [ ] Implement species type classification (sentient, non-sentient, magical, etc.)
-- [ ] Add species attributes (physical traits, average lifespan, size, etc.) as JSON
-- [ ] Create species abilities and special characteristics
+### 4.1 Species Data Layer ✓
+- [x] Create Species/Race model
+- [x] Implement species type classification (sentient, non-sentient, magical, etc.)
+- [x] Add species attributes (physical traits, average lifespan, size, etc.) as JSON
+- [x] Create species abilities and special characteristics
+- [x] Implement SpeciesRepository with query methods
+- [x] Create SpeciesService for business logic
+- [x] Add default "Human" species to new universes
+
+### 4.2 Species CRUD Operations ✓
+- [x] Implement Create Species functionality
+- [x] Implement Read/View Species details
+- [x] Implement Update Species functionality
+- [x] Implement Delete Species functionality (with safeguards)
+- [x] Add species templates (common fantasy/sci-fi races)
+
+### 4.3 Species UI ✓
+- [x] Create Species list view (table/grid)
+- [x] Design Species detail editor dialog
+- [x] Add species trait/attribute editor
+- [x] Implement species image/illustration support
+- [x] Create species comparison view
+
+</details>
 - [ ] Implement SpeciesRepository with query methods
 - [ ] Create SpeciesService for business logic
 - [ ] Add default "Human" species to new universes
@@ -136,124 +169,105 @@ WorldBuilder is being developed in a phased approach to ensure:
 ---
 
 <details>
-<summary><b>Phase 5: Notable Figures System</b></summary>
+<summary><b>Phase 5: Notable Figures System</b> ✓</summary>
 
-### 5.1 Figure Data Layer
-- [ ] Create Notable Figure model
-- [ ] Add species assignment field (defaults to Human)
-- [ ] Implement NotableFigureRepository with query methods
-- [ ] Create NotableFigureService for business logic
-- [ ] Add figure-location relationships
-- [ ] Create figure attribute fields (age, occupation, etc.)
-- [ ] Implement species-specific attributes for figures
+### 5.1 Figure Data Layer ✓
+- [x] Create Notable Figure model
+- [x] Add species assignment field (defaults to Human)
+- [x] Implement NotableFigureRepository with query methods
+- [x] Create NotableFigureService for business logic
+- [x] Add figure-location relationships
+- [x] Create figure attribute fields (age, occupation, etc.)
+- [x] Implement species-specific attributes for figures
 
-### 5.2 Figure CRUD Operations
-- [ ] Implement Create Figure functionality
-- [ ] Implement Read/View Figure details
-- [ ] Implement Update Figure functionality
-- [ ] Implement Delete Figure functionality
-- [ ] Add figure image/portrait support
-- [ ] Add species selection/assignment during figure creation
+### 5.2 Figure CRUD Operations ✓
+- [x] Implement Create Figure functionality
+- [x] Implement Read/View Figure details
+- [x] Implement Update Figure functionality
+- [x] Implement Delete Figure functionality
+- [x] Add figure image/portrait support
+- [x] Add species selection/assignment during figure creation
 
-### 5.3 Figure UI
-- [ ] Create Figure list view (table/grid/card view)
-- [ ] Design Figure detail editor dialog
-- [ ] Add species indicator/badge in figure lists
-- [ ] Implement Figure search/filter (including by species)
-- [ ] Add Figure card/tile view option
-- [ ] Create Figure relationship visualizer widget
-- [ ] Add species-specific field display based on assigned species
+### 5.3 Figure UI ✓
+- [x] Create Figure list view (table/grid/card view)
+- [x] Design Figure detail editor dialog
+- [x] Add species indicator/badge in figure lists
+- [x] Implement Figure search/filter (including by species)
+- [x] Add Figure card/tile view option
+- [x] Create Figure relationship visualizer widget
+- [x] Add species-specific field display based on assigned species
+
+</details>
 
 </details>
 
 ---
 
 <details>
-<summary><b>Phase 6: Search & Filter</b></summary>
+<summary><b>Phase 6: Relationships & Connections</b> ✓</summary>
 
-### 6.1 Basic Search
-- [ ] Implement global text search across entities
-- [ ] Create search results view widget
-- [ ] Add search by entity type filter
-- [ ] Implement search highlighting in results
-- [ ] Create SearchService for query logic
+### 6.1 Relationship Data ✓
+- [x] Create Relationship model
+- [x] Design relationship type system (enum)
+- [x] Implement RelationshipRepository
+- [x] Create RelationshipService for business logic
+- [x] Add bidirectional relationship support
+- [x] Create relationship strength/type properties
 
-### 6.2 Advanced Filtering
-- [ ] Create filter panel UI widget
-- [ ] Implement filter by tags
-- [ ] Add filter by location
-- [ ] Add filter by species/race
-- [ ] Add filter by date/timeline
-- [ ] Implement saved filter presets (stored in database)
-
-</details>
-
----
-
-<details>
-<summary><b>Phase 7: Relationships & Connections</b></summary>
-
-### 7.1 Relationship Data
-- [ ] Create Relationship model
-- [ ] Design relationship type system (enum)
-- [ ] Implement RelationshipRepository
-- [ ] Create RelationshipService for business logic
-- [ ] Add bidirectional relationship support
-- [ ] Create relationship strength/type properties
-
-### 7.2 Relationship UI
-- [ ] Create relationship editor dialog
-- [ ] Implement relationship list view widget
-- [ ] Add quick relationship creation UI
-- [ ] Design relationship graph visualization widget
-- [ ] Implement relationship filtering
+### 6.2 Relationship UI ✓
+- [x] Create relationship editor dialog
+- [x] Implement relationship list view widget
+- [x] Add quick relationship creation UI
+- [x] Design relationship graph visualization widget
+- [x] Implement relationship filtering
 
 </details>
 
 ---
 
 <details>
-<summary><b>Phase 8: Events & Timeline System</b></summary>
+<summary><b>Phase 7: Events & Timeline System</b> ✓</summary>
 
-### 8.1 Event Data Model
-- [ ] Create Event model with flexible date/time structure
-- [ ] Implement date precision levels (exact, year-only, approximate, relative)
-- [ ] Add event duration support (instant vs. span of time)
-- [ ] Create event type/category system (enum)
-- [ ] Implement event importance/significance levels
-- [ ] Add event-entity relationship support (figures, locations, organizations)
+### 7.1 Event Data Model ✓
+- [x] Create Event model with flexible date/time structure
+- [x] Implement date precision levels (exact, year-only, approximate, relative)
+- [x] Add event duration support (instant vs. span of time)
+- [x] Create event type/category system (enum)
+- [x] Implement event importance/significance levels
+- [x] Add event-entity relationship support (figures, locations, organizations)
 
-### 8.2 Event CRUD Operations
-- [ ] Implement Create Event functionality
-- [ ] Implement Read/View Event details
-- [ ] Implement Update Event functionality
-- [ ] Implement Delete Event functionality
-- [ ] Add event duplication feature
-- [ ] Create event templates for common event types
-- [ ] Create EventService for business logic
+### 7.2 Event CRUD Operations ✓
+- [x] Implement Create Event functionality
+- [x] Implement Read/View Event details
+- [x] Implement Update Event functionality
+- [x] Implement Delete Event functionality
+- [x] Add event duplication feature
+- [x] Create event templates for common event types
+- [x] Create EventService for business logic
 
-### 8.3 Timeline Management
-- [ ] Create Timeline model (multiple timelines per universe)
-- [ ] Implement custom timeline creation (e.g., "Main History", "Character A's Story", "War Timeline")
-- [ ] Add event-to-timeline assignment (events can exist on multiple timelines)
-- [ ] Implement timeline filtering and grouping
-- [ ] Create timeline era/period definitions
-- [ ] Add timeline merging and comparison features
+### 7.3 Timeline Management ✓
+- [x] Create Timeline model (multiple timelines per universe)
+- [x] Implement custom timeline creation (e.g., "Main History", "Character A's Story", "War Timeline")
+- [x] Add event-to-timeline assignment (events can exist on multiple timelines)
+- [x] Implement timeline filtering and grouping
+- [x] Create timeline era/period definitions
+- [x] Add timeline merging and comparison features
 
-### 8.4 Event UI
-- [ ] Design Event list view with sorting/filtering
-- [ ] Create Event detail editor dialog
-- [ ] Implement quick event creation dialog
-- [ ] Add event date picker widget with precision options
-- [ ] Create event-entity linking interface
-- [ ] Implement event search with date range filters
+### 7.4 Event UI ✓
+- [x] Design Event list view with sorting/filtering
+- [x] Create Event detail editor dialog
+- [x] Implement quick event creation dialog
+- [x] Add event date picker widget with precision options
+- [x] Create event-entity linking interface
+- [x] Implement event search with date range filters
 
 </details>
+
 
 ---
 
 <details>
-<summary><b>Phase 9: Additional Entity Types</b></summary>
+<summary><b>Phase 8: Additional Entity Types</b></summary>
 
 ### 9.1 Organizations System
 - [ ] Create Organization model
@@ -270,6 +284,27 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Create services for business logic
 - [ ] Create CRUD operations for each
 - [ ] Design detail view dialogs
+
+</details>
+---
+
+<details>
+<summary><b>Phase 9: Search & Filter</b></summary>
+
+### 8.1 Basic Search
+- [ ] Implement global text search across entities
+- [ ] Create search results view widget
+- [ ] Add search by entity type filter
+- [ ] Implement search highlighting in results
+- [ ] Create SearchService for query logic
+
+### 8.2 Advanced Filtering
+- [ ] Create filter panel UI widget
+- [ ] Implement filter by tags
+- [ ] Add filter by location
+- [ ] Add filter by species/race
+- [ ] Add filter by date/timeline
+- [ ] Implement saved filter presets (stored in database)
 
 </details>
 
@@ -416,14 +451,14 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 | Phase | Status | Completion |
 |-------|--------|------------|
-| Phase 1: Foundation & Setup | � Complete | 100% |
-| Phase 2: Universe Management | 🟡 In Progress | 60% |
-| Phase 3: Location System | ⚪ Not Started | 0% |
-| Phase 4: Species & Races | ⚪ Not Started | 0% |
-| Phase 5: Notable Figures | ⚪ Not Started | 0% |
-| Phase 6: Search & Filter | ⚪ Not Started | 0% |
-| Phase 7: Relationships | ⚪ Not Started | 0% |
-| Phase 8: Events & Timeline | ⚪ Not Started | 0% |
+| Phase 1: Foundation & Setup | 🟢 Complete | 100% |
+| Phase 2: Universe Management | 🟢 Complete | 100% |
+| Phase 3: Location System | 🟢 Complete | 100% |
+| Phase 4: Species & Races | 🟢 Complete | 100% |
+| Phase 5: Notable Figures | 🟢 Complete | 100% |
+| Phase 6: Relationships & Connections | 🟢 Complete | 100% |
+| Phase 7: Events & Timeline | 🟢 Complete | 100% |
+| Phase 8: Search & Filter | ⚪ Not Started | 0% |
 | Phase 9: Additional Entities | ⚪ Not Started | 0% |
 | Phase 10: Rich Content | ⚪ Not Started | 0% |
 | Phase 11: Visualization | ⚪ Not Started | 0% |
