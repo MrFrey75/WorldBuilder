@@ -5,6 +5,8 @@
 This document outlines the complete development roadmap for WorldBuilder. The project is organized into 14 distinct phases, each containing multiple sub-phases with specific, actionable tasks.
 
 > **Last Updated**: October 29, 2025
+> 
+> **Platform**: Python 3.11+ Desktop Application (PyQt/Tkinter)
 
 ---
 
@@ -22,25 +24,25 @@ WorldBuilder is being developed in a phased approach to ensure:
 <summary><b>Phase 1: Foundation & Setup</b> ✓ (Current)</summary>
 
 ### 1.1 Project Infrastructure
-- [x] Create solution and project structure
-- [x] Set up WorldBuilder.Core class library
-- [x] Set up WorldBuilder.Creator WPF project
-- [x] Configure project references and dependencies
-- [x] Create .gitignore and initial repository setup
+- [x] Create project directory structure
+- [x] Set up Python package structure (worldbuilder/)
+- [x] Create requirements.txt with dependencies
+- [x] Set up version control and .gitignore
+- [x] Initialize PyQt/Tkinter UI framework
 
 ### 1.2 Core Architecture
 - [x] Design database schema (tables for entities, relationships)
 - [x] Create base entity models
-- [ ] Implement repository pattern interfaces
-- [ ] Set up dependency injection container
-- [ ] Create base ViewModel class
+- [x] Implement repository pattern interfaces
+- [x] Set up SQLAlchemy ORM or SQLite3 layer
+- [x] Create base ViewModel/Controller class
 
 ### 1.3 Basic UI Framework
-- [ ] Create main window layout
-- [ ] Implement navigation system
-- [ ] Set up MVVM command infrastructure
-- [ ] Create resource dictionaries for styles
-- [ ] Implement basic theme support
+- [x] Create main application window
+- [x] Implement navigation/menu system
+- [x] Set up signal/slot or event infrastructure
+- [x] Create resource dictionaries for styles/themes
+- [x] Implement basic theme support (light/dark)
 
 </details>
 
@@ -51,14 +53,15 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 2.1 Universe CRUD
 - [ ] Create Universe model and database table
-- [ ] Implement Universe repository
+- [ ] Implement UniverseRepository with CRUD methods
+- [ ] Create UniverseService for business logic
 - [ ] Create Universe creation dialog/view
 - [ ] Implement Universe selection/switching
 - [ ] Add Universe edit functionality
 - [ ] Add Universe deletion with confirmation
 
 ### 2.2 Universe UI
-- [ ] Design Universe management view
+- [ ] Design Universe management view (PyQt/Tkinter widget)
 - [ ] Create Universe list view/grid
 - [ ] Implement Universe details panel
 - [ ] Add recent universes list
@@ -73,8 +76,9 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 3.1 Location Data Layer
 - [ ] Create Location model with parent reference
-- [ ] Design location hierarchy database schema
-- [ ] Implement Location repository
+- [ ] Design location hierarchy database schema (self-referencing)
+- [ ] Implement LocationRepository with hierarchy methods
+- [ ] Create LocationService for business logic
 - [ ] Add location parent-child relationship methods
 - [ ] Create location type enumeration (Continent, Region, City, Building, etc.)
 
@@ -87,8 +91,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 3.3 Location UI
 - [ ] Create Location list view
-- [ ] Design Location detail editor
-- [ ] Implement hierarchical tree view for locations
+- [ ] Design Location detail editor dialog
+- [ ] Implement hierarchical tree widget for locations
 - [ ] Add location type selector
 - [ ] Create location parent picker
 - [ ] Implement location breadcrumb navigation
@@ -104,21 +108,22 @@ WorldBuilder is being developed in a phased approach to ensure:
 ### 4.1 Species Data Layer
 - [ ] Create Species/Race model
 - [ ] Implement species type classification (sentient, non-sentient, magical, etc.)
-- [ ] Add species attributes (physical traits, average lifespan, size, etc.)
+- [ ] Add species attributes (physical traits, average lifespan, size, etc.) as JSON
 - [ ] Create species abilities and special characteristics
-- [ ] Implement Species repository
+- [ ] Implement SpeciesRepository with query methods
+- [ ] Create SpeciesService for business logic
 - [ ] Add default "Human" species to new universes
 
 ### 4.2 Species CRUD Operations
 - [ ] Implement Create Species functionality
 - [ ] Implement Read/View Species details
 - [ ] Implement Update Species functionality
-- [ ] Implement Delete Species functionality
+- [ ] Implement Delete Species functionality (with safeguards)
 - [ ] Add species templates (common fantasy/sci-fi races)
 
 ### 4.3 Species UI
-- [ ] Create Species list view
-- [ ] Design Species detail editor
+- [ ] Create Species list view (table/grid)
+- [ ] Design Species detail editor dialog
 - [ ] Add species trait/attribute editor
 - [ ] Implement species image/illustration support
 - [ ] Create species comparison view
@@ -133,7 +138,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 ### 5.1 Figure Data Layer
 - [ ] Create Notable Figure model
 - [ ] Add species assignment field (defaults to Human)
-- [ ] Implement Figure repository
+- [ ] Implement NotableFigureRepository with query methods
+- [ ] Create NotableFigureService for business logic
 - [ ] Add figure-location relationships
 - [ ] Create figure attribute fields (age, occupation, etc.)
 - [ ] Implement species-specific attributes for figures
@@ -147,12 +153,12 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Add species selection/assignment during figure creation
 
 ### 5.3 Figure UI
-- [ ] Create Figure list view
-- [ ] Design Figure detail editor
+- [ ] Create Figure list view (table/grid/card view)
+- [ ] Design Figure detail editor dialog
 - [ ] Add species indicator/badge in figure lists
 - [ ] Implement Figure search/filter (including by species)
 - [ ] Add Figure card/tile view option
-- [ ] Create Figure relationship visualizer
+- [ ] Create Figure relationship visualizer widget
 - [ ] Add species-specific field display based on assigned species
 
 </details>
@@ -164,17 +170,18 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 6.1 Basic Search
 - [ ] Implement global text search across entities
-- [ ] Create search results view
+- [ ] Create search results view widget
 - [ ] Add search by entity type filter
-- [ ] Implement search highlighting
+- [ ] Implement search highlighting in results
+- [ ] Create SearchService for query logic
 
 ### 6.2 Advanced Filtering
-- [ ] Create filter panel UI
+- [ ] Create filter panel UI widget
 - [ ] Implement filter by tags
 - [ ] Add filter by location
 - [ ] Add filter by species/race
 - [ ] Add filter by date/timeline
-- [ ] Implement saved filter presets
+- [ ] Implement saved filter presets (stored in database)
 
 </details>
 
@@ -185,16 +192,17 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 7.1 Relationship Data
 - [ ] Create Relationship model
-- [ ] Design relationship type system
-- [ ] Implement Relationship repository
+- [ ] Design relationship type system (enum)
+- [ ] Implement RelationshipRepository
+- [ ] Create RelationshipService for business logic
 - [ ] Add bidirectional relationship support
 - [ ] Create relationship strength/type properties
 
 ### 7.2 Relationship UI
 - [ ] Create relationship editor dialog
-- [ ] Implement relationship list view
-- [ ] Add quick relationship creation
-- [ ] Design relationship graph visualization
+- [ ] Implement relationship list view widget
+- [ ] Add quick relationship creation UI
+- [ ] Design relationship graph visualization widget
 - [ ] Implement relationship filtering
 
 </details>
@@ -208,7 +216,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Create Event model with flexible date/time structure
 - [ ] Implement date precision levels (exact, year-only, approximate, relative)
 - [ ] Add event duration support (instant vs. span of time)
-- [ ] Create event type/category system
+- [ ] Create event type/category system (enum)
 - [ ] Implement event importance/significance levels
 - [ ] Add event-entity relationship support (figures, locations, organizations)
 
@@ -219,6 +227,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Implement Delete Event functionality
 - [ ] Add event duplication feature
 - [ ] Create event templates for common event types
+- [ ] Create EventService for business logic
 
 ### 8.3 Timeline Management
 - [ ] Create Timeline model (multiple timelines per universe)
@@ -230,9 +239,9 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 8.4 Event UI
 - [ ] Design Event list view with sorting/filtering
-- [ ] Create Event detail editor
+- [ ] Create Event detail editor dialog
 - [ ] Implement quick event creation dialog
-- [ ] Add event date picker with precision options
+- [ ] Add event date picker widget with precision options
 - [ ] Create event-entity linking interface
 - [ ] Implement event search with date range filters
 
@@ -245,17 +254,19 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 9.1 Organizations System
 - [ ] Create Organization model
-- [ ] Implement Organization repository
+- [ ] Implement OrganizationRepository
+- [ ] Create OrganizationService for business logic
 - [ ] Create Organization CRUD operations
-- [ ] Design Organization detail view
+- [ ] Design Organization detail view dialog
 - [ ] Add member/figure relationships
 
 ### 9.2 Artifacts & Lore
 - [ ] Create Artifact model
-- [ ] Create Lore/Mythology model
+- [ ] Create Lore/Mythology model with LoreType enum
 - [ ] Implement respective repositories
+- [ ] Create services for business logic
 - [ ] Create CRUD operations for each
-- [ ] Design detail views
+- [ ] Design detail view dialogs
 
 </details>
 
@@ -265,18 +276,18 @@ WorldBuilder is being developed in a phased approach to ensure:
 <summary><b>Phase 10: Rich Content</b></summary>
 
 ### 10.1 Rich Text Editor
-- [ ] Integrate rich text editor control
-- [ ] Implement formatting toolbar
-- [ ] Add markdown support
+- [ ] Integrate rich text editor widget (QTextEdit with formatting or third-party)
+- [ ] Implement formatting toolbar (bold, italic, underline, etc.)
+- [ ] Add markdown parsing/rendering
 - [ ] Implement inline image support
 - [ ] Add spell check functionality
 
 ### 10.2 Media Management
-- [ ] Create media storage system
-- [ ] Implement image upload/attachment
-- [ ] Add image gallery view
+- [ ] Create media storage system (filesystem-based in universe directory)
+- [ ] Implement image upload/attachment dialog
+- [ ] Add image gallery view widget
 - [ ] Create media library browser
-- [ ] Implement media compression/optimization
+- [ ] Implement media compression/optimization on upload
 
 </details>
 
@@ -286,7 +297,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 <summary><b>Phase 11: Timeline Visualization</b></summary>
 
 ### 11.1 Timeline View Component
-- [ ] Create interactive timeline component with horizontal/vertical layouts
+- [ ] Create interactive timeline widget (canvas-based or using matplotlib)
 - [ ] Implement event plotting with visual markers
 - [ ] Add timeline zoom/pan controls (from millennia to days)
 - [ ] Create swimlane view for multiple timelines
@@ -318,8 +329,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Add age calculation for figures based on event dates
 
 ### 11.5 Relationship Graphs
-- [ ] Implement graph visualization library
-- [ ] Create entity relationship graph view
+- [ ] Implement graph visualization library (networkx + matplotlib/pyvis)
+- [ ] Create entity relationship graph view widget
 - [ ] Add graph layout algorithms
 - [ ] Implement interactive node selection
 - [ ] Add graph filtering and focusing
@@ -332,18 +343,18 @@ WorldBuilder is being developed in a phased approach to ensure:
 <summary><b>Phase 12: Data Management</b></summary>
 
 ### 12.1 Import/Export
-- [ ] Design export format (JSON/XML)
-- [ ] Implement full universe export
+- [ ] Design export format (JSON or custom binary format)
+- [ ] Implement full universe export service
 - [ ] Implement selective entity export
-- [ ] Create import functionality
-- [ ] Add export templates
+- [ ] Create import functionality with validation
+- [ ] Add export templates support
 
 ### 12.2 Backup & Restore
-- [ ] Implement automatic backup system
+- [ ] Implement automatic backup system (scheduled background task)
 - [ ] Create manual backup functionality
-- [ ] Design restore wizard
-- [ ] Add backup scheduling
-- [ ] Implement backup compression
+- [ ] Design restore wizard dialog
+- [ ] Add backup scheduling configuration
+- [ ] Implement backup compression (ZIP)
 
 </details>
 
@@ -354,24 +365,24 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 ### 13.1 User Preferences
 - [ ] Create settings/preferences dialog
-- [ ] Implement theme selection
+- [ ] Implement theme selection (light/dark mode)
 - [ ] Add UI customization options
-- [ ] Create keyboard shortcut configuration
-- [ ] Implement auto-save preferences
+- [ ] Create keyboard shortcut configuration UI
+- [ ] Implement auto-save preferences to config file
 
 ### 13.2 Performance & Optimization
 - [ ] Implement lazy loading for large datasets
-- [ ] Add entity caching system
-- [ ] Optimize database queries
-- [ ] Implement virtual scrolling
-- [ ] Add loading indicators
+- [ ] Add entity caching system (in-memory)
+- [ ] Optimize database queries (indexing, eager loading)
+- [ ] Implement virtual scrolling for large lists
+- [ ] Add loading indicators and progress bars
 
 ### 13.3 Help & Documentation
-- [ ] Create in-app help system
+- [ ] Create in-app help system (help browser widget)
 - [ ] Write user guide documentation
 - [ ] Add tooltips throughout UI
 - [ ] Create getting started wizard
-- [ ] Record tutorial videos
+- [ ] Record tutorial videos (optional)
 
 </details>
 
@@ -381,18 +392,18 @@ WorldBuilder is being developed in a phased approach to ensure:
 <summary><b>Phase 14: Testing & Deployment</b></summary>
 
 ### 14.1 Testing
-- [ ] Write unit tests for Core library
-- [ ] Create integration tests
-- [ ] Perform UI/UX testing
-- [ ] Conduct performance testing
-- [ ] Fix identified bugs
+- [ ] Write unit tests for core services and repositories (pytest)
+- [ ] Create integration tests with SQLite test database
+- [ ] Perform UI/UX testing (manual)
+- [ ] Conduct performance testing (large datasets)
+- [ ] Fix all identified bugs
 
 ### 14.2 Deployment
-- [ ] Create installer package
-- [ ] Set up auto-update system
+- [ ] Create executable package (PyInstaller/py2exe)
+- [ ] Set up auto-update mechanism (optional)
 - [ ] Prepare deployment documentation
 - [ ] Create release notes
-- [ ] Publish initial release
+- [ ] Publish initial release (GitHub Releases)
 
 </details>
 
@@ -402,7 +413,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 
 | Phase | Status | Completion |
 |-------|--------|------------|
-| Phase 1: Foundation & Setup | 🟡 In Progress | ~60% |
+| Phase 1: Foundation & Setup | � Complete | 100% |
 | Phase 2: Universe Management | ⚪ Not Started | 0% |
 | Phase 3: Location System | ⚪ Not Started | 0% |
 | Phase 4: Species & Races | ⚪ Not Started | 0% |
