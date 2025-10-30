@@ -8,11 +8,13 @@ from worldbuilder.services.event_service import EventService, TimelineService
 from worldbuilder.services.search_service import SearchService, SearchResult
 from worldbuilder.services.additional_entity_services import (OrganizationService, 
                                                               ArtifactService, LoreService)
+from worldbuilder.services.media_manager import MediaManager, MediaUploadDialog, MediaGalleryWidget
 
 __all__ = [
     "UniverseService", "LocationService", "SpeciesService", 
     "NotableFigureService", "RelationshipService",
     "EventService", "TimelineService",
     "SearchService", "SearchResult",
-    "OrganizationService", "ArtifactService", "LoreService"
+    "OrganizationService", "ArtifactService", "LoreService",
+    "MediaManager", "MediaUploadDialog", "MediaGalleryWidget"
 ]
