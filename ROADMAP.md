@@ -35,7 +35,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 ---
 
 <details open>
-<summary><b>Phase 1: Foundation & Setup</b> ✓ (Current)</summary>
+<summary><b>Phase 1: Foundation & Setup</b> ✓</summary>
 
 ### 1.1 Project Infrastructure ✓
 - [x] Create project directory structure
@@ -408,7 +408,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 ---
 
 <details>
-<summary><b>Phase 14: Testing & Deployment</b></summary>
+<summary><b>Phase 14: Testing</b></summary>
 
 ### 14.1 Testing
 - [ ] Write unit tests for core services and repositories (pytest)
@@ -416,13 +416,6 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Perform UI/UX testing (manual)
 - [ ] Conduct performance testing (large datasets)
 - [ ] Fix all identified bugs
-
-### 14.2 Deployment
-- [ ] Create executable package (PyInstaller/py2exe)
-- [ ] Set up auto-update mechanism (optional)
-- [ ] Prepare deployment documentation
-- [ ] Create release notes
-- [ ] Publish initial release (GitHub Releases)
 
 </details>
 
@@ -445,9 +438,22 @@ WorldBuilder is being developed in a phased approach to ensure:
 | Phase 11: Rich Content | 🟢 Complete | 100% |
 | Phase 12: Polish & UX | 🟢 Complete | 100% |
 | Phase 13: Data Management | ⚪ Not Started | 0% |
-| Phase 14: Testing & Deployment | ⚪ Not Started | 0% |
+| Phase 14: Testing | ⚪ Not Started | 0% |
 
 **Legend**: 🟢 Complete | 🟡 In Progress | ⚪ Not Started
+
+---
+
+## Deployment (Post-Development)
+
+This section is separate from the main development roadmap and will be addressed after the core application is complete and tested.
+
+### Deployment Tasks
+- [ ] Create executable package (PyInstaller/py2exe)
+- [ ] Set up auto-update mechanism (optional)
+- [ ] Prepare deployment documentation
+- [ ] Create release notes
+- [ ] Publish initial release (GitHub Releases)
 
 ---
 

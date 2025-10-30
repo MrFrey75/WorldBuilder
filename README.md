@@ -205,7 +205,7 @@ pyinstaller --windowed --onefile --name WorldBuilder src/worldbuilder/main.py
 
 ## 🗺️ Development Roadmap
 
-### Current Status: **Phase 1 - Foundation** 🏗️
+### Current Status: **Phase 13 - Data Management** (Next Phase)
 
 We're building WorldBuilder through a carefully planned 14-phase development approach. Each phase contains specific, actionable tasks organized into sub-phases.
 
@@ -213,20 +213,21 @@ We're building WorldBuilder through a carefully planned 14-phase development app
 
 ### Quick Overview
 
-- **Phase 1**: Foundation & Setup *(Current - 60% Complete)*
-- **Phase 2**: Universe Management
-- **Phase 3**: Location System with Hierarchical Structure
-- **Phase 4**: Species & Races System
-- **Phase 5**: Notable Figures System
-- **Phase 6**: Search & Filter
-- **Phase 7**: Relationships & Connections
-- **Phase 8**: Events & Timeline System
-- **Phase 9**: Additional Entity Types (Organizations, Artifacts, Lore)
-- **Phase 10**: Rich Content (Text Editor, Media)
-- **Phase 11**: Timeline Visualization & Graphs
-- **Phase 12**: Data Management (Import/Export, Backup)
-- **Phase 13**: Polish & UX
-- **Phase 14**: Testing & Deployment
+- **Phase 1**: Foundation & Setup ✓ Complete
+- **Phase 2**: Universe Management ✓ Complete
+- **Phase 3**: Location System with Hierarchical Structure ✓ Complete
+- **Phase 4**: Species & Races System ✓ Complete
+- **Phase 5**: Notable Figures System ✓ Complete
+- **Phase 6**: Relationships & Connections ✓ Complete
+- **Phase 7**: Events & Timeline System ✓ Complete
+- **Phase 8**: Search & Filter ✓ Complete
+- **Phase 9**: Additional Entity Types (Organizations, Artifacts, Lore) ✓ Complete
+- **Phase 10**: Visualization ✓ Complete
+- **Phase 11**: Rich Content ✓ Complete
+- **Phase 12**: Polish & UX ✓ Complete
+- **Phase 13**: Data Management (Import/Export, Backup) *(Next)*
+- **Phase 14**: Testing
+- **Deployment**: Post-development (separate from main roadmap)
 
 See the **[detailed roadmap](ROADMAP.md)** for complete task breakdowns and progress tracking.
 
