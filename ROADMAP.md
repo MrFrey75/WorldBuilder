@@ -311,30 +311,9 @@ WorldBuilder is being developed in a phased approach to ensure:
 ---
 
 <details>
-<summary><b>Phase 10: Rich Content</b></summary>
+<summary><b>Phase 10: Visualization</b></summary>
 
-### 10.1 Rich Text Editor
-- [ ] Integrate rich text editor widget (QTextEdit with formatting or third-party)
-- [ ] Implement formatting toolbar (bold, italic, underline, etc.)
-- [ ] Add markdown parsing/rendering
-- [ ] Implement inline image support
-- [ ] Add spell check functionality
-
-### 10.2 Media Management
-- [ ] Create media storage system (filesystem-based in universe directory)
-- [ ] Implement image upload/attachment dialog
-- [ ] Add image gallery view widget
-- [ ] Create media library browser
-- [ ] Implement media compression/optimization on upload
-
-</details>
-
----
-
-<details>
-<summary><b>Phase 11: Timeline Visualization</b></summary>
-
-### 11.1 Timeline View Component
+### 10.1 Timeline View Component
 - [ ] Create interactive timeline widget (canvas-based or using matplotlib)
 - [ ] Implement event plotting with visual markers
 - [ ] Add timeline zoom/pan controls (from millennia to days)
@@ -342,7 +321,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Implement era/period background shading
 - [ ] Add "now" marker for current story point
 
-### 11.2 Timeline Interaction
+### 10.2 Timeline Interaction
 - [ ] Implement click-to-view event details
 - [ ] Add drag-and-drop event repositioning
 - [ ] Create event clustering for dense time periods
@@ -350,7 +329,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Add timeline bookmarks and navigation
 - [ ] Create timeline snapshot/versioning
 
-### 11.3 Timeline Display Modes
+### 10.3 Timeline Display Modes
 - [ ] Implement linear timeline view
 - [ ] Create branching timeline view (alternate timelines/what-ifs)
 - [ ] Add calendar view mode
@@ -358,7 +337,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Implement relative timeline (event-to-event relationships)
 - [ ] Add timeline export (image, PDF, HTML)
 
-### 11.4 Date & Time System
+### 10.4 Date & Time System
 - [ ] Create custom calendar system support
 - [ ] Implement date conversion between calendar systems
 - [ ] Add support for fictional calendars (custom months, days, years)
@@ -366,12 +345,33 @@ WorldBuilder is being developed in a phased approach to ensure:
 - [ ] Implement recurring events support
 - [ ] Add age calculation for figures based on event dates
 
-### 11.5 Relationship Graphs
+### 10.5 Relationship Graphs
 - [ ] Implement graph visualization library (networkx + matplotlib/pyvis)
 - [ ] Create entity relationship graph view widget
 - [ ] Add graph layout algorithms
 - [ ] Implement interactive node selection
 - [ ] Add graph filtering and focusing
+
+</details>
+
+---
+
+<details>
+<summary><b>Phase 11: Rich Content</b></summary>
+
+### 11.1 Rich Text Editor
+- [ ] Integrate rich text editor widget (QTextEdit with formatting or third-party)
+- [ ] Implement formatting toolbar (bold, italic, underline, etc.)
+- [ ] Add markdown parsing/rendering
+- [ ] Implement inline image support
+- [ ] Add spell check functionality
+
+### 11.2 Media Management
+- [ ] Create media storage system (filesystem-based in universe directory)
+- [ ] Implement image upload/attachment dialog
+- [ ] Add image gallery view widget
+- [ ] Create media library browser
+- [ ] Implement media compression/optimization on upload
 
 </details>
 
@@ -460,8 +460,8 @@ WorldBuilder is being developed in a phased approach to ensure:
 | Phase 7: Events & Timeline | 🟢 Complete | 100% |
 | Phase 8: Search & Filter | 🟢 Complete | 100% |
 | Phase 9: Additional Entities | 🟢 Complete | 100% |
-| Phase 10: Rich Content | ⚪ Not Started | 0% |
-| Phase 11: Visualization | ⚪ Not Started | 0% |
+| Phase 10: Visualization | ⚪ Not Started | 0% |
+| Phase 11: Rich Content | ⚪ Not Started | 0% |
 | Phase 12: Data Management | ⚪ Not Started | 0% |
 | Phase 13: Polish & UX | ⚪ Not Started | 0% |
 | Phase 14: Testing & Deployment | ⚪ Not Started | 0% |
