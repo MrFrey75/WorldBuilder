@@ -1,3 +1,4 @@
 """Services package initialization."""
+from worldbuilder.services.universe_service import UniverseService
 
-__all__ = []
+__all__ = ["UniverseService"]

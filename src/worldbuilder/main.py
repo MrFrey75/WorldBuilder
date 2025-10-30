@@ -4,7 +4,8 @@ from pathlib import Path
 from PyQt6.QtWidgets import QApplication
 from worldbuilder.views import MainWindow
 from worldbuilder.utils import ThemeManager, Theme
-from worldbuilder.database import DatabaseManager
+from worldbuilder.database import DatabaseManager, UniverseRepository
+from worldbuilder.services import UniverseService
 
 
 class WorldBuilderApp:
@@ -18,10 +19,11 @@ class WorldBuilderApp:
         
         # Initialize database
         self.db_manager = None
+        self.universe_service = None
         self._setup_database()
         
-        # Create main window
-        self.main_window = MainWindow()
+        # Create main window with universe service
+        self.main_window = MainWindow(self.universe_service)
         
         # Connect signals
         self.main_window.theme_changed.connect(self._on_theme_changed)
@@ -30,7 +32,7 @@ class WorldBuilderApp:
         ThemeManager.apply_theme(self.app, Theme.LIGHT)
     
     def _setup_database(self):
-        """Set up database connection."""
+        """Set up database connection and services."""
         # Use application data directory for database
         app_data_dir = Path.home() / ".worldbuilder"
         app_data_dir.mkdir(exist_ok=True)
@@ -38,6 +40,11 @@ class WorldBuilderApp:
         db_path = app_data_dir / "worldbuilder.db"
         self.db_manager = DatabaseManager(str(db_path))
         self.db_manager.create_tables()
+        
+        # Create repository and service
+        session = self.db_manager.get_session()
+        universe_repository = UniverseRepository(session)
+        self.universe_service = UniverseService(universe_repository)
     
     def _on_theme_changed(self, theme: Theme):
         """Handle theme change event.

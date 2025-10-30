@@ -1,8 +1,11 @@
 """Main application window."""
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QMenuBar, QMenu, QStatusBar, QLabel
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QMenuBar, QMenu, QStatusBar, QLabel, QMessageBox
 from PyQt6.QtCore import pyqtSignal, Qt
 from PyQt6.QtGui import QAction
 from worldbuilder.utils import ThemeManager, Theme
+from worldbuilder.views.universe_list_view import UniverseListView
+from worldbuilder.views.universe_dialog import UniverseDialog
+from worldbuilder.services import UniverseService
 
 
 class MainWindow(QMainWindow):
@@ -10,15 +13,21 @@ class MainWindow(QMainWindow):
     
     # Signals
     theme_changed = pyqtSignal(Theme)
+    universe_opened = pyqtSignal(int)  # Emits universe ID
     
-    def __init__(self):
+    def __init__(self, universe_service: UniverseService = None):
         super().__init__()
+        self.universe_service = universe_service
         self.setWindowTitle("WorldBuilder")
         self.setGeometry(100, 100, 1200, 800)
         
         self._setup_ui()
         self._create_menu_bar()
         self._create_status_bar()
+        
+        # Load universes if service is available
+        if self.universe_service:
+            self._load_universes()
     
     def _setup_ui(self):
         """Set up the main UI components."""
@@ -29,11 +38,14 @@ class MainWindow(QMainWindow):
         # Main layout
         self.main_layout = QVBoxLayout(self.central_widget)
         
-        # Placeholder label
-        placeholder = QLabel("Welcome to WorldBuilder")
-        placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        placeholder.setStyleSheet("font-size: 24px; color: gray;")
-        self.main_layout.addWidget(placeholder)
+        # Universe list view
+        self.universe_list_view = UniverseListView()
+        self.universe_list_view.create_requested.connect(self._on_create_universe)
+        self.universe_list_view.edit_requested.connect(self._on_edit_universe)
+        self.universe_list_view.delete_requested.connect(self._on_delete_universe)
+        self.universe_list_view.open_requested.connect(self._on_open_universe)
+        
+        self.main_layout.addWidget(self.universe_list_view)
     
     def _create_menu_bar(self):
         """Create the menu bar."""
@@ -44,11 +56,20 @@ class MainWindow(QMainWindow):
         
         new_action = QAction("&New Universe", self)
         new_action.setShortcut("Ctrl+N")
+        new_action.triggered.connect(self._on_create_universe)
         file_menu.addAction(new_action)
         
         open_action = QAction("&Open Universe", self)
         open_action.setShortcut("Ctrl+O")
+        open_action.triggered.connect(self._on_open_selected_universe)
         file_menu.addAction(open_action)
+        
+        file_menu.addSeparator()
+        
+        refresh_action = QAction("&Refresh", self)
+        refresh_action.setShortcut("F5")
+        refresh_action.triggered.connect(self._load_universes)
+        file_menu.addAction(refresh_action)
         
         file_menu.addSeparator()
         
@@ -59,6 +80,18 @@ class MainWindow(QMainWindow):
         
         # Edit menu
         edit_menu = menubar.addMenu("&Edit")
+        
+        edit_universe_action = QAction("&Edit Universe", self)
+        edit_universe_action.setShortcut("Ctrl+E")
+        edit_universe_action.triggered.connect(self._on_edit_selected_universe)
+        edit_menu.addAction(edit_universe_action)
+        
+        delete_universe_action = QAction("&Delete Universe", self)
+        delete_universe_action.setShortcut("Delete")
+        delete_universe_action.triggered.connect(self._on_delete_selected_universe)
+        edit_menu.addAction(delete_universe_action)
+        
+        edit_menu.addSeparator()
         
         preferences_action = QAction("&Preferences", self)
         preferences_action.setShortcut("Ctrl+,")
@@ -82,6 +115,7 @@ class MainWindow(QMainWindow):
         help_menu = menubar.addMenu("&Help")
         
         about_action = QAction("&About", self)
+        about_action.triggered.connect(self._show_about)
         help_menu.addAction(about_action)
     
     def _create_status_bar(self):
@@ -97,3 +131,131 @@ class MainWindow(QMainWindow):
             message: Message to display
         """
         self.status_bar.showMessage(message)
+    
+    def _load_universes(self):
+        """Load universes from database."""
+        if not self.universe_service:
+            return
+        
+        try:
+            universes = self.universe_service.get_all_universes()
+            self.universe_list_view.load_universes(universes)
+            self.set_status_message(f"Loaded {len(universes)} universe(s)")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load universes: {str(e)}")
+    
+    def _on_create_universe(self):
+        """Handle create universe request."""
+        if not self.universe_service:
+            return
+        
+        dialog = UniverseDialog(self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            data = dialog.get_data()
+            try:
+                universe = self.universe_service.create_universe(**data)
+                self._load_universes()
+                self.set_status_message(f"Created universe: {universe.name}")
+            except ValueError as e:
+                QMessageBox.warning(self, "Validation Error", str(e))
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to create universe: {str(e)}")
+    
+    def _on_edit_universe(self, universe_id: int):
+        """Handle edit universe request."""
+        if not self.universe_service:
+            return
+        
+        universe = self.universe_service.get_universe(universe_id)
+        if not universe:
+            QMessageBox.warning(self, "Error", "Universe not found")
+            return
+        
+        dialog = UniverseDialog(self, universe)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            data = dialog.get_data()
+            try:
+                self.universe_service.update_universe(universe_id, **data)
+                self._load_universes()
+                self.set_status_message(f"Updated universe: {data['name']}")
+            except ValueError as e:
+                QMessageBox.warning(self, "Validation Error", str(e))
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to update universe: {str(e)}")
+    
+    def _on_edit_selected_universe(self):
+        """Handle edit selected universe from menu."""
+        universe_id = self.universe_list_view.get_selected_universe_id()
+        if universe_id:
+            self._on_edit_universe(universe_id)
+    
+    def _on_delete_universe(self, universe_id: int):
+        """Handle delete universe request."""
+        if not self.universe_service:
+            return
+        
+        universe = self.universe_service.get_universe(universe_id)
+        if not universe:
+            return
+        
+        reply = QMessageBox.question(
+            self, 
+            "Confirm Delete",
+            f"Are you sure you want to delete universe '{universe.name}'?\n\nThis action cannot be undone.",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No
+        )
+        
+        if reply == QMessageBox.StandardButton.Yes:
+            try:
+                self.universe_service.delete_universe(universe_id)
+                self._load_universes()
+                self.set_status_message(f"Deleted universe: {universe.name}")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to delete universe: {str(e)}")
+    
+    def _on_delete_selected_universe(self):
+        """Handle delete selected universe from menu."""
+        universe_id = self.universe_list_view.get_selected_universe_id()
+        if universe_id:
+            self._on_delete_universe(universe_id)
+    
+    def _on_open_universe(self, universe_id: int):
+        """Handle open universe request."""
+        if not self.universe_service:
+            return
+        
+        try:
+            self.universe_service.set_active_universe(universe_id)
+            universe = self.universe_service.get_universe(universe_id)
+            self._load_universes()
+            self.set_status_message(f"Opened universe: {universe.name}")
+            self.universe_opened.emit(universe_id)
+            
+            # TODO: Switch to universe workspace view
+            QMessageBox.information(
+                self,
+                "Universe Opened",
+                f"Universe '{universe.name}' is now active.\n\nFull workspace functionality will be available in Phase 3+."
+            )
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to open universe: {str(e)}")
+    
+    def _on_open_selected_universe(self):
+        """Handle open selected universe from menu."""
+        universe_id = self.universe_list_view.get_selected_universe_id()
+        if universe_id:
+            self._on_open_universe(universe_id)
+        else:
+            QMessageBox.information(self, "No Selection", "Please select a universe to open.")
+    
+    def _show_about(self):
+        """Show about dialog."""
+        QMessageBox.about(
+            self,
+            "About WorldBuilder",
+            "<h3>WorldBuilder v0.1.0</h3>"
+            "<p>A comprehensive worldbuilding and universe creation tool.</p>"
+            "<p>Phase 2.1 Complete - Universe Management</p>"
+            "<p>© 2025 WorldBuilder Team</p>"
+        )

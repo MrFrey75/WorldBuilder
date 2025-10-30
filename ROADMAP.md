@@ -54,18 +54,18 @@ WorldBuilder is being developed in a phased approach to ensure:
 <details open>
 <summary><b>Phase 2: Universe Management</b> (Current)</summary>
 
-### 2.1 Universe CRUD
-- [ ] Create Universe model and database table
-- [ ] Implement UniverseRepository with CRUD methods
-- [ ] Create UniverseService for business logic
-- [ ] Create Universe creation dialog/view
-- [ ] Implement Universe selection/switching
-- [ ] Add Universe edit functionality
-- [ ] Add Universe deletion with confirmation
+### 2.1 Universe CRUD ✓
+- [x] Create Universe model and database table
+- [x] Implement UniverseRepository with CRUD methods
+- [x] Create UniverseService for business logic
+- [x] Create Universe creation dialog/view
+- [x] Implement Universe selection/switching
+- [x] Add Universe edit functionality
+- [x] Add Universe deletion with confirmation
 
 ### 2.2 Universe UI
-- [ ] Design Universe management view (PyQt/Tkinter widget)
-- [ ] Create Universe list view/grid
+- [x] Design Universe management view (PyQt6 widget)
+- [x] Create Universe list view/grid (table with actions)
 - [ ] Implement Universe details panel
 - [ ] Add recent universes list
 - [ ] Create Universe settings page
@@ -417,7 +417,7 @@ WorldBuilder is being developed in a phased approach to ensure:
 | Phase | Status | Completion |
 |-------|--------|------------|
 | Phase 1: Foundation & Setup | � Complete | 100% |
-| Phase 2: Universe Management | ⚪ Not Started | 0% |
+| Phase 2: Universe Management | 🟡 In Progress | 60% |
 | Phase 3: Location System | ⚪ Not Started | 0% |
 | Phase 4: Species & Races | ⚪ Not Started | 0% |
 | Phase 5: Notable Figures | ⚪ Not Started | 0% |
